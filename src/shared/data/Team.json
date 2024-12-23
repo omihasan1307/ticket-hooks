@@ -1,0 +1,25 @@
+[
+      {
+        "name": "Omi Hasan",
+        "role": "Founder & CEO",
+        "image": "/asset/omi.jpg"
+      },
+      {
+        "name": "Tanveer Shahreare",
+        "role": "Founder & MD",
+       "image": "/asset/moon.jpg"
+      },
+      {
+        "name": "Teertha Dev Sharker",
+        "role": "Project Manager",
+         "image": "/asset/tds.jpg"
+      },
+      {
+        "name": "Anik datta",
+        "role": "Founder & CTO",
+        "image": "/asset/anik.jpg"
+      }
+
+    ]
+
+  
