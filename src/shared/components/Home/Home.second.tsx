@@ -4,7 +4,7 @@ import { TbHandFinger } from "react-icons/tb";
 
 const HomeSecond = () => {
   return (
-    <div className="max-w-screen-xl mx-auto space-y-12">
+    <div className="max-w-screen-xl mx-auto space-y-16 pt-28">
       <h1 className="text-4xl font-semibold text-center">
         <span className="text-baseColor">Buy tickets</span> in 3 easy steps
       </h1>

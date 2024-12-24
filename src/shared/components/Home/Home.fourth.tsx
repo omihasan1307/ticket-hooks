@@ -48,8 +48,8 @@ const serviceItem = [
 
 const HomeFourth = () => {
   return (
-    <div className="bg-[#fe620125] ">
-      <div className="max-w-screen-xl mx-auto py-28  space-y-2">
+    <div className="bg-[#fe620125] my-28">
+      <div className="max-w-screen-xl mx-auto py-24  space-y-2">
         <div className="text-center space-y-4">
           <h1>A one-stop solution for your travel needs</h1>
           <h1 className="text-4xl font-semibold ">

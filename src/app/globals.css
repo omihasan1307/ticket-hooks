@@ -70,3 +70,24 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.bgBanner {
+  background-image: url("../../public/asset/banner-bus.webp");
+  background-position: center;
+  background-size: cover;
+  height: 70vh;
+}
+
+@media (max-width: 1024px) {
+  .bgBanner {
+    height: 50vh;
+    background-size: contain;
+  }
+}
+
+@media (max-width: 768px) {
+  .bgBanner {
+    height: 40vh;
+    background-size: cover;
+  }
+}

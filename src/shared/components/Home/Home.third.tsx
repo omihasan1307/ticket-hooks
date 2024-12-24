@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const HomeThird = () => {
   return (
-    <div className="max-w-screen-xl mx-auto py-28">
+    <div className="max-w-screen-xl mx-auto ">
       <div className="lg:flex items-center justify-between gap-10">
         <div className="space-y-5">
           <h1 className="text-slate-400">Our Story</h1>

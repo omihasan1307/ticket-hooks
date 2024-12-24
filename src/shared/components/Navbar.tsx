@@ -62,10 +62,16 @@ const Navbar = () => {
 
   return (
     <div
+      // className={`${
+      //   isSticky
+      //     ? "fixed top-0 left-0 right-0 z-50 bg-white py-5"
+      //     : "relative py-5 "
+      // }`}
+
       className={`${
         isSticky
-          ? "fixed top-0 left-0 right-0 z-50 bg-white py-5"
-          : "relative  py-5"
+          ? "fixed top-0 left-0 right-0 z-50 bg-white/30 backdrop-blur-sm  py-5"
+          : "relative py-5"
       }`}
     >
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-2 lg:px-0">
