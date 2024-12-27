@@ -25,6 +25,8 @@ const NavbarItems = [
 
 const Navbar = () => {
   const pathName = usePathname();
+  const basePath = pathName.split("/")[1] ? `/${pathName.split("/")[1]}` : "/";
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -81,7 +83,7 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center space-x-2">
           {NavbarItems.map((item: any) => {
-            const isActive = pathName === item?.link;
+            const isActive = basePath === item?.link;
             return (
               <Link
                 key={item.id}

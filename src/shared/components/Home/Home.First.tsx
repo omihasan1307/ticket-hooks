@@ -6,6 +6,7 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { CgArrowsExchange } from "react-icons/cg";
 import { Calendar } from "@/components/ui/calendar";
 import CheckBoxOption from "@/shared/constant/CheckBoxOption";
+import InputField from "@/shared/constant/InputField";
 
 const HomeFirst = () => {
   const [selectedOption, setSelectedOption] = useState<string>("one-way");
@@ -24,7 +25,7 @@ const HomeFirst = () => {
   const [isReturnDateCalendarVisible, setIsReturnDateCalendarVisible] =
     useState<boolean>(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
-
+  const [error, setError] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -41,9 +42,46 @@ const HomeFirst = () => {
     console.log(data);
   };
 
-  const handleOptionChange = (option: string) => {
-    setSelectedOption(option);
+  const handleFromBlur = (value: string) => {
+    setSelectedFrom(value);
+    setIsFromInputVisible(false);
+    if (!value) setError(true);
+    else setError(false);
   };
+
+  const handleFromEnter = (value: string) => {
+    setSelectedFrom(value);
+    setIsFromInputVisible(false);
+    if (!value) setError(true);
+    else setError(false);
+  };
+
+  const handleFromChange = (value: string) => {
+    setSelectedFrom(value);
+    if (value) setError(false);
+  };
+  const handleToBlur = (value: string) => {
+    setSelectedTo(value);
+    setIsToInputVisible(false);
+    if (!value) setError(true);
+    else setError(false);
+  };
+
+  const handleToEnter = (value: string) => {
+    setSelectedTo(value);
+    setIsToInputVisible(false);
+    if (!value) setError(true);
+    else setError(false);
+  };
+
+  const handleToChange = (value: string) => {
+    setSelectedTo(value);
+    if (value) setError(false);
+  };
+
+  // const handleOptionChange = (option: string) => {
+  //   setSelectedOption(option);
+  // };
 
   const toggleStartDateCalendarVisibility = () => {
     setIsStartDateCalendarVisible((prev) => !prev);
@@ -110,26 +148,35 @@ const HomeFirst = () => {
                   </div>
                 </div>
               ) : (
-                <input
-                  {...register("from", {
-                    required: "Please choose departure city.",
-                  })}
-                  type="text"
+                <InputField
                   placeholder="From"
-                  className={`w-full px-4 py-5 focus:outline-none duration-300 hover:duration-300 rounded ${
-                    errors.from ? "border-red-500" : "hover:border-baseColor"
-                  }`}
-                  onBlur={(e) => {
-                    setSelectedFrom(e.target.value);
-                    setIsFromInputVisible(false);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      setSelectedFrom(e.currentTarget.value);
-                      setIsFromInputVisible(false);
-                    }
-                  }}
+                  value={selectedFrom}
+                  onChange={handleFromChange}
+                  onBlur={handleFromBlur}
+                  onEnter={handleFromEnter}
+                  error={error}
                 />
+
+                // <input
+                //   {...register("from", {
+                //     required: "Please choose departure city.",
+                //   })}
+                //   type="text"
+                //   placeholder="From"
+                //   className={`w-full px-4 py-5 focus:outline-none duration-300 hover:duration-300 rounded ${
+                //     errors.from ? "border-red-500" : "hover:border-baseColor"
+                //   }`}
+                //   onBlur={(e) => {
+                //     setSelectedFrom(e.target.value);
+                //     setIsFromInputVisible(false);
+                //   }}
+                //   onKeyDown={(e) => {
+                //     if (e.key === "Enter") {
+                //       setSelectedFrom(e.currentTarget.value);
+                //       setIsFromInputVisible(false);
+                //     }
+                //   }}
+                // />
               )}
               {isFormSubmitted && !selectedFrom && (
                 <p className="text-red-500 text-sm pt-1">
@@ -157,24 +204,33 @@ const HomeFirst = () => {
                   </div>
                 </div>
               ) : (
-                <input
-                  {...register("to", { required: "To is required" })}
-                  type="text"
+                <InputField
                   placeholder="To"
-                  className={`w-full px-4 py-5 focus:outline-none duration-300 hover:duration-300 rounded ${
-                    errors.to ? "border-red-500" : "hover:border-baseColor"
-                  }`}
-                  onBlur={(e) => {
-                    setSelectedTo(e.target.value);
-                    setIsToInputVisible(false);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      setSelectedTo(e.currentTarget.value);
-                      setIsToInputVisible(false);
-                    }
-                  }}
+                  value={selectedTo}
+                  onChange={handleToChange}
+                  onBlur={handleToBlur}
+                  onEnter={handleToEnter}
+                  error={error}
                 />
+
+                // <input
+                //   {...register("to", { required: "To is required" })}
+                //   type="text"
+                //   placeholder="To"
+                //   className={`w-full px-4 py-5 focus:outline-none duration-300 hover:duration-300 rounded ${
+                //     errors.to ? "border-red-500" : "hover:border-baseColor"
+                //   }`}
+                //   onBlur={(e) => {
+                //     setSelectedTo(e.target.value);
+                //     setIsToInputVisible(false);
+                //   }}
+                //   onKeyDown={(e) => {
+                //     if (e.key === "Enter") {
+                //       setSelectedTo(e.currentTarget.value);
+                //       setIsToInputVisible(false);
+                //     }
+                //   }}
+                // />
               )}
               {isFormSubmitted && !selectedTo && (
                 <p className="text-red-500 text-sm pt-1">

@@ -1,0 +1,21 @@
+[
+    {
+      "id": "1",
+      "featured_image": "/asset/event1.jpeg",
+      "title": "Live Concert: Symphony in the Park",
+      "subtitle": "An evening of classical melodies with renowned artists."
+    },
+    {
+      "id": "2",
+      "featured_image": "/asset/events.jpg",
+      "title": "Rock Fest 2024",
+      "subtitle": "Experience the thrill with top rock bands and artists."
+    },
+    {
+      "id": "3",
+      "featured_image": "/asset/event1.jpeg",
+      "title": "Jazz Nights",
+      "subtitle": "Groove to the rhythm of smooth jazz under the stars."
+    }
+  ]
+  
