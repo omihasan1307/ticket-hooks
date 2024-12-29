@@ -5,7 +5,7 @@ const CheckBoxOption = ({ id, label, selectedOption, onChange }: any) => (
     <Checkbox
       id={id}
       checked={selectedOption === id}
-      onCheckedChange={() => onChange(id)}
+      onCheckedChange={() => onChange(selectedOption === id ? null : id)}
     />
     <label
       htmlFor={id}

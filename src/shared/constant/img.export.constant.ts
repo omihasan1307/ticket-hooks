@@ -8,6 +8,9 @@ import Bus from "../../../public/asset/bus.jpg";
 import NoImage from "../../../public/asset/no-image.avif";
 import NotFound from "../../../public/asset/not-found.svg";
 
+import soudia from "../../../public/asset/soudianac.png";
+import shamoli from "../../../public/asset/shamoli.png";
+
 export const img = {
   Logo,
   Shape,
@@ -15,4 +18,6 @@ export const img = {
   Bus,
   NoImage,
   NotFound,
+  soudia,
+  shamoli,
 };

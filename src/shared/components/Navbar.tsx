@@ -83,7 +83,10 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center space-x-2">
           {NavbarItems.map((item: any) => {
-            const isActive = basePath === item?.link;
+            const isActive =
+              (item.link === "/" &&
+                (basePath === "/" || basePath === "/bus")) ||
+              basePath === item.link;
             return (
               <Link
                 key={item.id}

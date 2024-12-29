@@ -7,6 +7,7 @@ import { CgArrowsExchange } from "react-icons/cg";
 import { Calendar } from "@/components/ui/calendar";
 import CheckBoxOption from "@/shared/constant/CheckBoxOption";
 import InputField from "@/shared/constant/InputField";
+import { useRouter } from "next/navigation";
 
 const HomeFirst = () => {
   const [selectedOption, setSelectedOption] = useState<string>("one-way");
@@ -26,6 +27,7 @@ const HomeFirst = () => {
     useState<boolean>(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -35,44 +37,65 @@ const HomeFirst = () => {
   const onSubmit: SubmitHandler<any> = (data: any) => {
     setIsFormSubmitted(true);
 
-    if (errors.from || errors.to || !selectedStartDate) {
+    // if (errors.from || errors.to || !selectedStartDate) {
+    //   return;
+    // }
+
+    if (
+      !selectedFrom ||
+      !selectedTo ||
+      !selectedStartDate ||
+      errors.from ||
+      errors.to
+    ) {
+      setError(true);
       return;
     }
 
-    console.log(data);
+    const queryParams = new URLSearchParams({
+      fromCity: selectedFrom,
+      toCity: selectedTo,
+      journeyDate: selectedStartDate.toLocaleDateString("en-CA"),
+      ...(selectedOption === "round-way" && selectedReturnDate
+        ? { returnDate: selectedReturnDate.toLocaleDateString("en-CA") }
+        : {}),
+    });
+
+    router.push(`/bus/search?${queryParams.toString()}`);
   };
 
-  const handleFromBlur = (value: string) => {
-    setSelectedFrom(value);
-    setIsFromInputVisible(false);
-    if (!value) setError(true);
-    else setError(false);
-  };
+  // const handleFromBlur = (value: string) => {
+  //   setSelectedFrom(value);
+  //   setIsFromInputVisible(false);
+  //   if (!value) setError(true);
+  //   else setError(false);
+  // };
 
-  const handleFromEnter = (value: string) => {
-    setSelectedFrom(value);
-    setIsFromInputVisible(false);
-    if (!value) setError(true);
-    else setError(false);
-  };
+  // const handleFromEnter = (value: string) => {
+  //   setSelectedFrom(value);
+  //   setIsFromInputVisible(false);
+  //   if (!value) setError(true);
+  //   else setError(false);
+  // };
 
   const handleFromChange = (value: string) => {
     setSelectedFrom(value);
     if (value) setError(false);
   };
-  const handleToBlur = (value: string) => {
-    setSelectedTo(value);
-    setIsToInputVisible(false);
-    if (!value) setError(true);
-    else setError(false);
-  };
 
-  const handleToEnter = (value: string) => {
-    setSelectedTo(value);
-    setIsToInputVisible(false);
-    if (!value) setError(true);
-    else setError(false);
-  };
+  // const handleToBlur = (value: string) => {
+  //   setSelectedTo(value);
+  //   setIsToInputVisible(false);
+  //   if (!value) setError(true);
+  //   else setError(false);
+  // };
+
+  // const handleToEnter = (value: string) => {
+  //   setSelectedTo(value);
+  //   setIsToInputVisible(false);
+  //   if (!value) setError(true);
+  //   else setError(false);
+  // };
 
   const handleToChange = (value: string) => {
     setSelectedTo(value);
@@ -82,14 +105,6 @@ const HomeFirst = () => {
   // const handleOptionChange = (option: string) => {
   //   setSelectedOption(option);
   // };
-
-  const toggleStartDateCalendarVisibility = () => {
-    setIsStartDateCalendarVisible((prev) => !prev);
-  };
-
-  const toggleReturnDateCalendarVisibility = () => {
-    setIsReturnDateCalendarVisible((prev) => !prev);
-  };
 
   const handleDataChange = () => {
     setSelectedFrom(selectedTo);
@@ -152,8 +167,7 @@ const HomeFirst = () => {
                   placeholder="From"
                   value={selectedFrom}
                   onChange={handleFromChange}
-                  onBlur={handleFromBlur}
-                  onEnter={handleFromEnter}
+                  // onBlur={handleFromBlur}
                   error={error}
                 />
 
@@ -208,8 +222,8 @@ const HomeFirst = () => {
                   placeholder="To"
                   value={selectedTo}
                   onChange={handleToChange}
-                  onBlur={handleToBlur}
-                  onEnter={handleToEnter}
+                  // onBlur={handleToBlur}
+                  // onEnter={handleToEnter}
                   error={error}
                 />
 
@@ -242,7 +256,7 @@ const HomeFirst = () => {
             <div className="w-full relative ">
               <div className="flex items-center gap-5 px-5 py-3 border border-white hover:border-baseColor duration-300 hover:duration-300 cursor-pointer">
                 <div
-                  onClick={toggleStartDateCalendarVisibility}
+                  onClick={() => setIsStartDateCalendarVisible((prev) => !prev)}
                   className="w-full"
                 >
                   <p className="text-sm text-baseColor pb-1">Journey Date</p>
@@ -252,17 +266,21 @@ const HomeFirst = () => {
                       : "Pick a Date"}
                   </p>
                 </div>
-                <div
-                  onClick={toggleReturnDateCalendarVisibility}
-                  className="w-full"
-                >
-                  <p className="text-sm text-baseColor pb-1">Return Date</p>
-                  <p>
-                    {selectedReturnDate
-                      ? selectedReturnDate.toLocaleDateString()
-                      : "Pick a Date"}
-                  </p>
-                </div>
+                {selectedOption === "round-way" && (
+                  <div
+                    onClick={() =>
+                      setIsReturnDateCalendarVisible((prev) => !prev)
+                    }
+                    className="w-full"
+                  >
+                    <p className="text-sm text-baseColor pb-1">Return Date</p>
+                    <p>
+                      {selectedReturnDate
+                        ? selectedReturnDate.toLocaleDateString()
+                        : "Pick a Date"}
+                    </p>
+                  </div>
+                )}
               </div>
               {isFormSubmitted && !selectedTo && (
                 <p className="text-red-500 text-sm pt-1">
