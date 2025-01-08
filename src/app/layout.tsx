@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "@/shared/components/Footer";
 import Navbar from "@/shared/components/Navbar";
 import TanStackProvider from "@/providers/Tanstack.provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </TanStackProvider>
+        <Toaster />
       </body>
     </html>
   );
